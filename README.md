@@ -101,7 +101,5 @@ We achieve state-of-the-art performance on real-world video super-resolution.
 
 ## <a name="acknowledgements"></a>💡 Acknowledgements
 
-This project is based on [CogVideo](https://github.com/THUDM/CogVideo) and [Open-Sora](https://github.com/hpcaitech/Open-Sora)
-
- [Q-Instruct](https://github.com/Q-Future/Q-Instruct), [DepictQA](https://github.com/XPixelGroup/DepictQA), [mPLUG-Owl](https://github.com/X-PLUG/mPLUG-Owl), and [LLaVA](https://github.com/haotian-liu/LLaVA).
+This project is based on [CogVideo](https://github.com/THUDM/CogVideo) and [Open-Sora](https://github.com/hpcaitech/Open-Sora).
 
