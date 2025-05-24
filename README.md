@@ -8,8 +8,7 @@
 <a href="https://github.com/zhengchen1999/DOVE" target='_blank' style="text-decoration: none;"><img src="https://visitor-badge.laobi.icu/badge?page_id=zhengchen1999/DOVE"></a>
 <a href="https://github.com/zhengchen1999/DOVE/stargazers" target='_blank' style="text-decoration: none;"><img src="https://img.shields.io/github/stars/zhengchen1999/DOVE?style=social"></a>
 </div>
-
-[[project](https://zhengchen1999.github.io/DOVE)] [[arXiv]()] [[supplementary material]()] [dataset] [pretrained models]
+[[arXiv](https://arxiv.org/abs/2505.16239)] [[supplementary material](https://github.com/zhengchen1999/DOVE/releases/download/v1/Supplementary_Material.pdf)] [dataset] [pretrained models]
 
 
 
@@ -23,6 +22,8 @@
 > Meanwhile, we design a video processing pipeline to construct a high-quality dataset tailored for VSR, termed HQ-VSR. Fine-tuning on this dataset further enhances the restoration capability of DOVE. Extensive experiments show that DOVE exhibits comparable or superior performance to multi-step diffusion-based VSR methods. It also offers outstanding inference efficiency, achieving up to a **28$\times$** speed-up over existing methods such as MGLD-VSR.
 
 ![](./figs/Compare.png)
+
+
 
 ---
 
@@ -64,6 +65,7 @@ We achieve state-of-the-art performance on real-world video super-resolution.
 <p align="center">
   <img width="900" src="figs/Quantitative.png">
 </p>
+
 </details>
 
 <details open>
@@ -78,26 +80,57 @@ We achieve state-of-the-art performance on real-world video super-resolution.
 <summary>More Qualitative Results</summary>
 
 
-- More results in Fig. 1 of the supplementary material
 
-<p align="center">
-  <img width="900" src="figs/Qualitative-2.png">
-</p>
-
-- More results in Fig. 2 of the supplementary material
-
-<p align="center">
-  <img width="900" src="figs/Qualitative-3.png">
-</p>
 - More results in Fig. 3 of the supplementary material
 
 <p align="center">
-  <img width="900" src="figs/Qualitative-4.png">
+  <img width="900" src="figs/Qualitative-2-1.png">
+</p>
+
+
+- More results in Fig. 4 of the supplementary material
+
+<p align="center">
+  <img width="900" src="figs/Qualitative-2-2.png">
+</p>
+
+- More results in Fig. 5 of the supplementary material
+
+<p align="center">
+  <img width="900" src="figs/Qualitative-3-1.png">
+  <img width="900" src="figs/Qualitative-3-2.png">
+</p>
+
+- More results in Fig. 6 of the supplementary material
+
+<p align="center">
+  <img width="900" src="figs/Qualitative-4-1.png">
+  <img width="900" src="figs/Qualitative-4-2.png">
+</p>
+
+- More results in Fig. 7 of the supplementary material
+
+<p align="center">
+  <img width="900" src="figs/Qualitative-5-1.png">
+  <img width="900" src="figs/Qualitative-5-2.png">
 </p>
 
 </details>
 
 </details>
+
+## <a name="citation"></a>📎 Citation
+
+If you find the code helpful in your research or work, please cite the following paper(s).
+
+```
+@article{chen2025dove,
+  title={DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution},
+  author={Chen, Zheng and Zou, Zichen and Zhang, Kewei and Su, Xiongfei and Yuan, Xin and Guo, Yong and Zhang, Yulun},
+  journal={arXiv preprint arXiv:2505.16239},
+  year={2025}
+}
+```
 
 ## <a name="acknowledgements"></a>💡 Acknowledgements
 
