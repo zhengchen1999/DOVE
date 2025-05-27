@@ -1,4 +1,3 @@
-
 # DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution
 
 [Zheng Chen](https://zhengchen1999.github.io/), [Zichen Zou](https://github.com/zzctmd), [Kewei Zhang](), [Xiongfei Su](https://ieeexplore.ieee.org/author/37086348852), [Xin Yuan](https://en.westlake.edu.cn/faculty/xin-yuan.html), [Yong Guo](https://www.guoyongcs.com/), and [Yulun Zhang](http://yulunzhang.com/), "DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution", 2025
@@ -12,6 +11,8 @@
 
 
 
+
+
 #### 🔥🔥🔥 News
 
 - **2025-5-22:** This repo is released.
@@ -21,7 +22,54 @@
 > **Abstract:** Diffusion models have demonstrated promising performance in real-world video super-resolution (VSR). However, the dozens of sampling steps they require, make inference extremely slow. Sampling acceleration techniques, particularly single-step, provide a potential solution. Nonetheless, achieving one step in VSR remains challenging, due to the high training overhead on video data and stringent fidelity demands. To tackle the above issues, we propose DOVE, an efficient one-step diffusion model for real-world VSR. DOVE is obtained by fine-tuning a pretrained video diffusion model (*i.e.*, CogVideoX). To effectively train DOVE, we introduce the latent–pixel training strategy. The strategy employs a two-stage scheme to gradually adapt the model to the video super-resolution task.
 > Meanwhile, we design a video processing pipeline to construct a high-quality dataset tailored for VSR, termed HQ-VSR. Fine-tuning on this dataset further enhances the restoration capability of DOVE. Extensive experiments show that DOVE exhibits comparable or superior performance to multi-step diffusion-based VSR methods. It also offers outstanding inference efficiency, achieving up to a **28$\times$** speed-up over existing methods such as MGLD-VSR.
 
-![](./figs/Compare.png)
+![](./assets/Compare.png)
+
+---
+
+<div align="center"> 
+  <!-- 1 Row -->
+  <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
+    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+      <source src="./assets/001_transition.mp4" type="video/mp4">
+    </video>
+    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+      <source src="./assets/002_transition.mp4" type="video/mp4">
+    </video>
+    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 4%; object-fit: contain;">
+      <source src="./assets/465_transition.mp4" type="video/mp4">
+    </video>
+  </div>
+  <!-- 2 Row -->
+  <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
+    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+      <source src="./assets/033_transition.mp4" type="video/mp4">
+    </video>
+    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+      <source src="./assets/135_transition.mp4" type="video/mp4">
+    </video>
+  </div>
+  <!-- 3 Row -->
+  <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
+    <video height="350px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+      <source src="./assets/007_transition.mp4" type="video/mp4">
+    </video>
+    <video height="350px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+      <source src="./assets/289_transition.mp4" type="video/mp4">
+    </video>
+    <video height="350px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+      <source src="./assets/263_transition.mp4" type="video/mp4">
+    </video>
+  </div>
+  <!-- 4 Row -->
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+      <source src="./assets/012_transition.mp4" type="video/mp4">
+    </video>
+    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+      <source src="./assets/016_transition.mp4" type="video/mp4">
+  </div>
+</div>
+
 
 
 
@@ -29,13 +77,13 @@
 
 ### Training Strategy
 
-![](./figs/Strategy.png)
+![](./assets/Strategy.png)
 
 ---
 
 ### Video Processing Pipeline
 
-![](./figs/Pipeline.png)
+![](./assets/Pipeline.png)
 
 ## 🔖 TODO
 
@@ -63,7 +111,7 @@ We achieve state-of-the-art performance on real-world video super-resolution.
 - Results in Tab. 2 of the main paper
 
 <p align="center">
-  <img width="900" src="figs/Quantitative.png">
+  <img width="900" src="assets/Quantitative.png">
 </p>
 
 </details>
@@ -74,45 +122,50 @@ We achieve state-of-the-art performance on real-world video super-resolution.
 - Results in Fig. 4 of the main paper
 
 <p align="center">
-  <img width="900" src="figs/Qualitative-1.png">
+  <img width="900" src="assets/Qualitative-1.png">
 </p>
 <details>
 <summary>More Qualitative Results</summary>
 
 
 
+
 - More results in Fig. 3 of the supplementary material
 
 <p align="center">
-  <img width="900" src="figs/Qualitative-2-1.png">
+  <img width="900" src="assets/Qualitative-2-1.png">
 </p>
+
 
 
 - More results in Fig. 4 of the supplementary material
 
 <p align="center">
-  <img width="900" src="figs/Qualitative-2-2.png">
+  <img width="900" src="assets/Qualitative-2-2.png">
 </p>
+
 
 - More results in Fig. 5 of the supplementary material
 
 <p align="center">
-  <img width="900" src="figs/Qualitative-3-1.png">
-  <img width="900" src="figs/Qualitative-3-2.png">
+  <img width="900" src="assets/Qualitative-3-1.png">
+  <img width="900" src="assets/Qualitative-3-2.png">
 </p>
+
 
 - More results in Fig. 6 of the supplementary material
 
 <p align="center">
-  <img width="900" src="figs/Qualitative-4-1.png">
-  <img width="900" src="figs/Qualitative-4-2.png">
+  <img width="900" src="assets/Qualitative-4-1.png">
+  <img width="900" src="assets/Qualitative-4-2.png">
 </p>
+
 
 - More results in Fig. 7 of the supplementary material
 
 <p align="center">
-  <img width="900" src="figs/Qualitative-5-1.png">
-  <img width="900" src="figs/Qualitative-5-2.png">
+  <img width="900" src="assets/Qualitative-5-1.png">
+  <img width="900" src="assets/Qualitative-5-2.png">
 </p>
 
 </details>
