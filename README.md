@@ -12,8 +12,6 @@
 
 
 
-
-
 #### 🔥🔥🔥 News
 
 - **2025-5-22:** This repo is released.
@@ -21,55 +19,56 @@
 ---
 
 > **Abstract:** Diffusion models have demonstrated promising performance in real-world video super-resolution (VSR). However, the dozens of sampling steps they require, make inference extremely slow. Sampling acceleration techniques, particularly single-step, provide a potential solution. Nonetheless, achieving one step in VSR remains challenging, due to the high training overhead on video data and stringent fidelity demands. To tackle the above issues, we propose DOVE, an efficient one-step diffusion model for real-world VSR. DOVE is obtained by fine-tuning a pretrained video diffusion model (*i.e.*, CogVideoX). To effectively train DOVE, we introduce the latent–pixel training strategy. The strategy employs a two-stage scheme to gradually adapt the model to the video super-resolution task.
-> Meanwhile, we design a video processing pipeline to construct a high-quality dataset tailored for VSR, termed HQ-VSR. Fine-tuning on this dataset further enhances the restoration capability of DOVE. Extensive experiments show that DOVE exhibits comparable or superior performance to multi-step diffusion-based VSR methods. It also offers outstanding inference efficiency, achieving up to a **28$\times$** speed-up over existing methods such as MGLD-VSR.
+> Meanwhile, we design a video processing pipeline to construct a high-quality dataset tailored for VSR, termed HQ-VSR. Fine-tuning on this dataset further enhances the restoration capability of DOVE. Extensive experiments show that DOVE exhibits comparable or superior performance to multi-step diffusion-based VSR methods. It also offers outstanding inference efficiency, achieving up to a **28×** speed-up over existing methods such as MGLD-VSR.
 
 ![](./assets/Compare.png)
 
 ---
 
-<div align="center"> 
-  <!-- 1 Row -->
-  <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
-    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+<div align="center">
+  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
+    <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/001_transition.mp4" type="video/mp4">
     </video>
-    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+    <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/002_transition.mp4" type="video/mp4">
     </video>
-    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 4%; object-fit: contain;">
+    <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/465_transition.mp4" type="video/mp4">
     </video>
   </div>
-  <!-- 2 Row -->
-  <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
-    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+
+  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
+    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/033_transition.mp4" type="video/mp4">
     </video>
-    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/135_transition.mp4" type="video/mp4">
     </video>
   </div>
-  <!-- 3 Row -->
-  <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
-    <video height="350px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+
+  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
+    <video height="300" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/007_transition.mp4" type="video/mp4">
     </video>
-    <video height="350px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+    <video height="300" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/289_transition.mp4" type="video/mp4">
     </video>
-    <video height="350px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+    <video height="300" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/263_transition.mp4" type="video/mp4">
     </video>
   </div>
-  <!-- 4 Row -->
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
+
+  <div style="display: flex; justify-content: center; gap: 10px;">
+    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/012_transition.mp4" type="video/mp4">
     </video>
-    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
+    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
       <source src="./assets/016_transition.mp4" type="video/mp4">
+    </video>
   </div>
 </div>
+
 
 
 
