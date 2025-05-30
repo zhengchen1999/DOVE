@@ -7,7 +7,6 @@
 <a href="https://github.com/zhengchen1999/DOVE" target='_blank' style="text-decoration: none;"><img src="https://visitor-badge.laobi.icu/badge?page_id=zhengchen1999/DOVE"></a>
 <a href="https://github.com/zhengchen1999/DOVE/stargazers" target='_blank' style="text-decoration: none;"><img src="https://img.shields.io/github/stars/zhengchen1999/DOVE?style=social"></a>
 </div>
-
 [[arXiv](https://arxiv.org/abs/2505.16239)] [[supplementary material](https://github.com/zhengchen1999/DOVE/releases/download/v1/Supplementary_Material.pdf)] [dataset] [pretrained models]
 
 
@@ -26,9 +25,13 @@
 ---
 
 <div align="center">
-  <video src="https://github.com/zhengchen1999/DOVE/raw/main/assets/001_transition.mp4" width="30%"></video>
-  <video src="https://github.com/zhengchen1999/DOVE/raw/main/assets/002_transition.mp4" width="30%"></video>
-  <video src="https://github.com/zhengchen1999/DOVE/raw/main/assets/003_transition.mp4" width="30%"></video>
+
+
+|                                                              |                                                              |                                                              |                                                              |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <video height="200" src="./assets/001_transition.mp4" autoplay loop muted playsinline></video> | <video height="200" src="./assets/002_transition.mp4" autoplay loop muted playsinline></video> | <video height="200" src="./assets/003_transition.mp4" autoplay loop muted playsinline></video> | <video height="200" src="./assets/004_transition.mp4" autoplay loop muted playsinline></video> |
+| <video height="250" src="./assets/005_transition.mp4" autoplay loop muted playsinline></video> | <video height="250" src="./assets/006_transition.mp4" autoplay loop muted playsinline></video> | <video height="250" src="./assets/007_transition.mp4" autoplay loop muted playsinline></video> | <video height="250" src="./assets/008_transition.mp4" autoplay loop muted playsinline></video> |
+
 </div>
 
 
