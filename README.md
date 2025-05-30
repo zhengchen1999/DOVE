@@ -25,49 +25,25 @@
 
 ---
 
-<div align="center">
-  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
-    <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/001_transition.mp4" type="video/mp4">
-    </video>
-    <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/002_transition.mp4" type="video/mp4">
-    </video>
-    <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/465_transition.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
-    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/033_transition.mp4" type="video/mp4">
-    </video>
-    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/135_transition.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
-    <video height="300" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/007_transition.mp4" type="video/mp4">
-    </video>
-    <video height="300" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/289_transition.mp4" type="video/mp4">
-    </video>
-    <video height="300" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/263_transition.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div style="display: flex; justify-content: center; gap: 10px;">
-    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/012_transition.mp4" type="video/mp4">
-    </video>
-    <video height="250" style="object-fit: contain;" autoplay loop muted playsinline>
-      <source src="./assets/016_transition.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
+<table style="border-collapse: collapse; margin: 0 auto;">
+  <tr>
+    <td style="border: none; padding: 5px;">
+      <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
+        <source src="./assets/001_transition.mp4" type="video/mp4">
+      </video>
+    </td>
+    <td style="border: none; padding: 5px;">
+      <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
+        <source src="./assets/002_transition.mp4" type="video/mp4">
+      </video>
+    </td>
+    <td style="border: none; padding: 5px;">
+      <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
+        <source src="./assets/465_transition.mp4" type="video/mp4">
+      </video>
+    </td>
+  </tr>
+</table>
 
 
 
