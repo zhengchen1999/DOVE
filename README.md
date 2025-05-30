@@ -24,16 +24,6 @@
 
 ---
 
-<div align="center">
-
-
-|                                                              |                                                              |                                                              |                                                              |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <video height="200" src="./assets/001_transition.mp4" autoplay loop muted playsinline></video> | <video height="200" src="./assets/002_transition.mp4" autoplay loop muted playsinline></video> | <video height="200" src="./assets/003_transition.mp4" autoplay loop muted playsinline></video> | <video height="200" src="./assets/004_transition.mp4" autoplay loop muted playsinline></video> |
-| <video height="250" src="./assets/005_transition.mp4" autoplay loop muted playsinline></video> | <video height="250" src="./assets/006_transition.mp4" autoplay loop muted playsinline></video> | <video height="250" src="./assets/007_transition.mp4" autoplay loop muted playsinline></video> | <video height="250" src="./assets/008_transition.mp4" autoplay loop muted playsinline></video> |
-
-</div>
-
 
 
 
@@ -49,6 +39,13 @@
 ### Video Processing Pipeline
 
 ![](./assets/Pipeline.png)
+
+---
+
+<div align="center">
+  <video width="250" src="assets/001_transition.mp4"></video><video width="250" src="assets/001_transition.mp4"></video><video width="250" src="assets/001_transition.mp4"></video>
+</div>
+
 
 ## 🔖 TODO
 
