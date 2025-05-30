@@ -27,13 +27,13 @@
 <table border="0" style="width: 100%; text-align: center; margin-top: 20px;">
   <tr>
     <td>
-      <video src="https://github.com/user-attachments/assets/67dbd151-a5e4-45b6-af0b-41aea4bc8c5c" height="200" controls autoplay loop></video>
+      <video src="https://github.com/user-attachments/assets/67dbd151-a5e4-45b6-af0b-41aea4bc8c5c" controls autoplay loop></video>
     </td>
     <td>
-      <video src="https://github.com/user-attachments/assets/a95d636c-2bdd-4716-a471-ded225d76d42" height="200" controls autoplay loop></video>
+      <video src="https://github.com/user-attachments/assets/a95d636c-2bdd-4716-a471-ded225d76d42" controls autoplay loop></video>
     </td>
     <td>
-      <video src="https://github.com/user-attachments/assets/1dce503c-95b3-421d-a5ff-575fc33f16fc" height="127" controls autoplay loop></video>
+      <video src="https://github.com/user-attachments/assets/1dce503c-95b3-421d-a5ff-575fc33f16fc" controls autoplay loop></video>
     </td>
   </tr>
   <tr>
