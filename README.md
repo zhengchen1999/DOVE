@@ -24,9 +24,28 @@
 
 ---
 
-
-
-
+<table border="0" style="width: 100%; text-align: center; margin-top: 20px;">
+  <tr>
+    <td>
+      <video src="https://github.com/user-attachments/assets/3b7badb8-2204-4773-80b9-c24f7cdb7cb5" height="200" autoplay muted loop controls></video>
+    </td>
+    <td>
+      <video src="https://github.com/user-attachments/assets/0a848876-72f1-4bb8-8ee4-9641caf5226d" height="200" autoplay muted loop controls></video>
+    </td>
+    <td>
+      <video src="https://github.com/user-attachments/assets/f17773c0-802b-4a14-a699-7051ca3f6eff" height="200" autoplay muted loop controls></video>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <video src="https://github.com/user-attachments/assets/6cc4850f-bf65-427c-9828-53626e0d0d74" height="200" autoplay muted loop controls></video>
+    </td>
+    <td>
+      <video src="https://github.com/user-attachments/assets/0c86c6ae-0ad6-4883-a638-42fa76ee35f4" height="200" autoplay muted loop controls></video>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 
 
@@ -44,28 +63,31 @@
 
 ---
 
-<div align="center"> 
-  <!-- 1 Row -->
-  <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 0px;">
-    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
-      <source src="https://github.com/user-attachments/assets/3b7badb8-2204-4773-80b9-c24f7cdb7cb5" type="video/mp4">
-    </video>
-    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
-      <source src="https://github.com/user-attachments/assets/0a848876-72f1-4bb8-8ee4-9641caf5226d" type="video/mp4">
-    </video>
-    <video height="200px" autoplay muted loop playsinline preload="auto" style="margin: 0 4%; object-fit: contain;">
-      <source src="https://github.com/user-attachments/assets/f17773c0-802b-4a14-a699-7051ca3f6eff" type="video/mp4">
-    </video>
-  </div>
-  <!-- 4 Row -->
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 0%; object-fit: contain;">
-      <source src="https://github.com/user-attachments/assets/6cc4850f-bf65-427c-9828-53626e0d0d74" type="video/mp4">
-    </video>
-    <video height="300px" autoplay muted loop playsinline preload="auto" style="margin: 0 1%; object-fit: contain;">
-      <source src="https://github.com/user-attachments/assets/0c86c6ae-0ad6-4883-a638-42fa76ee35f4" type="video/mp4">
-  </div>
-</div>
+<table border="0" style="width: 100%; text-align: center;">
+  <!-- 第一行 -->
+  <tr>
+    <td>
+      <video src="https://github.com/user-attachments/assets/3b7badb8-2204-4773-80b9-c24f7cdb7cb5" height="200px" autoplay muted loop playsinline></video>
+    </td>
+    <td>
+      <video src="https://github.com/user-attachments/assets/0a848876-72f1-4bb8-8ee4-9641caf5226d" height="200px" autoplay muted loop playsinline></video>
+    </td>
+    <td>
+      <video src="https://github.com/user-attachments/assets/f17773c0-802b-4a14-a699-7051ca3f6eff" height="200px" autoplay muted loop playsinline></video>
+    </td>
+  </tr>
+  <!-- 第二行 -->
+  <tr>
+    <td>
+
+      <video src="https://github.com/user-attachments/assets/6cc4850f-bf65-427c-9828-53626e0d0d74" height="300px" autoplay muted loop playsinline></video>
+​    </td>
+​    <td>
+      <video src="https://github.com/user-attachments/assets/0c86c6ae-0ad6-4883-a638-42fa76ee35f4" height="300px" autoplay muted loop playsinline></video>
+​    </td>
+​    <td></td> <!-- 保持表格对齐 -->
+  </tr>
+</table>
 
 
 ## 🔖 TODO
