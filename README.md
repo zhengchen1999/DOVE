@@ -25,25 +25,11 @@
 
 ---
 
-<table style="border-collapse: collapse; margin: 0 auto;">
-  <tr>
-    <td style="border: none; padding: 5px;">
-      <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
-        <source src="./assets/001_transition.mp4" type="video/mp4">
-      </video>
-    </td>
-    <td style="border: none; padding: 5px;">
-      <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
-        <source src="./assets/002_transition.mp4" type="video/mp4">
-      </video>
-    </td>
-    <td style="border: none; padding: 5px;">
-      <video height="200" style="object-fit: contain;" autoplay loop muted playsinline>
-        <source src="./assets/465_transition.mp4" type="video/mp4">
-      </video>
-    </td>
-  </tr>
-</table>
+<div align="center">
+  <video src="https://github.com/zhengchen1999/DOVE/raw/main/assets/001_transition.mp4" width="30%"></video>
+  <video src="https://github.com/zhengchen1999/DOVE/raw/main/assets/002_transition.mp4" width="30%"></video>
+  <video src="https://github.com/zhengchen1999/DOVE/raw/main/assets/003_transition.mp4" width="30%"></video>
+</div>
 
 
 
