@@ -31,10 +31,10 @@
 <table border="0" style="width: 100%; text-align: center; margin-top: 20px;">
   <tr>
     <td>
-      <video src="https://github.com/user-attachments/assets/26c359bf-f464-4f47-b300-36a850bffe51" controls autoplay loop></video>
+      <video src="https://github.com/user-attachments/assets/4ad0ca78-6cca-48c0-95a5-5d5554093f7d" controls autoplay loop></video>
     </td>
     <td>
-      <video src="https://github.com/user-attachments/assets/e5b5d247-28af-43fd-b32c-1f1b5896d9e7" controls autoplay loop></video>
+      <video src="https://github.com/user-attachments/assets/866edcf5-4741-46d3-83f2-148ac777eeb5" controls autoplay loop></video>
     </td>
   </tr>
 </table>
