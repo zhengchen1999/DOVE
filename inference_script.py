@@ -524,7 +524,7 @@ if __name__ == "__main__":
     # Set seed
     set_seed(args.seed)
 
-    if args.input_json is None:
+    if args.input_json is not None:
         with open(args.input_json, 'r') as f:
             video_prompt_dict = json.load(f)
     else:
