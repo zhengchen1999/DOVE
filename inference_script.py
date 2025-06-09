@@ -347,6 +347,36 @@ def get_valid_tile_region(t_start, t_end, h_start, h_end, w_start, w_end,
     }
 
 
+def prepare_rotary_positional_embeddings(
+    height: int,
+    width: int,
+    num_frames: int,
+    transformer_config: Dict,
+    vae_scale_factor_spatial: int,
+    device: torch.device,
+) -> Tuple[torch.Tensor, torch.Tensor]:
+
+    grid_height = height // (vae_scale_factor_spatial * transformer_config.patch_size)
+    grid_width = width // (vae_scale_factor_spatial * transformer_config.patch_size)
+
+    if transformer_config.patch_size_t is None:
+        base_num_frames = num_frames
+    else:
+        base_num_frames = (
+            num_frames + transformer_config.patch_size_t - 1
+        ) // transformer_config.patch_size_t
+    freqs_cos, freqs_sin = get_3d_rotary_pos_embed(
+        embed_dim=transformer_config.attention_head_dim,
+        crops_coords=None,
+        grid_size=(grid_height, grid_width),
+        temporal_size=base_num_frames,
+        grid_type="slice",
+        max_size=(grid_height, grid_width),
+        device=device,
+    )
+
+    return freqs_cos, freqs_sin
+    
 @no_grad
 def process_video(
     pipe: CogVideoXPipeline,
@@ -355,13 +385,6 @@ def process_video(
     noise_step: int = 0,
     sr_noise_step: int = 399,
 ):
-    """
-    Parameters:
-    - prompt (str): The description of the video to be generated.
-    - output_path (str): The path where the generated video will be saved.
-    - guidance_scale (float): The scale for classifier-free guidance. Higher values can lead to better alignment with the prompt.
-    - fps (int): The frames per second for the generated video.
-    """
     # SR the video frames based on the prompt.
     # `num_frames` is the Number of frames to generate.
 
@@ -419,17 +442,21 @@ def process_video(
 
     # Prepare rotary embeds
     vae_scale_factor_spatial = 2 ** (len(pipe.vae.config.block_out_channels) - 1)
+    transformer_config = pipe.transformer.config
     rotary_emb = (
-        pipe._prepare_rotary_positional_embeddings(
+        prepare_rotary_positional_embeddings(
             height=height * vae_scale_factor_spatial,
             width=width * vae_scale_factor_spatial,
             num_frames=num_frames,
+            transformer_config=transformer_config,
+            vae_scale_factor_spatial=vae_scale_factor_spatial,
             device=latent.device,
         )
         if pipe.transformer.config.use_rotary_positional_embeddings
         else None
     )
 
+    # Predict noise
     predicted_noise = pipe.transformer(
         hidden_states=latent,
         encoder_hidden_states=prompt_embedding,

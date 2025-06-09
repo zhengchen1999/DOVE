@@ -45,6 +45,7 @@ python inference_script.py \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/RealVSR \
     --is_vae_st \
+    --upscale 1 \
     --png_save
 
 python eval_metrics.py \
@@ -58,6 +59,7 @@ python inference_script.py \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/MVSR4x \
     --is_vae_st \
+    --upscale 1 \
     --png_save
 
 python eval_metrics.py \
