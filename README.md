@@ -144,9 +144,9 @@ The full testing commands are provided in the shell script: [inference.sh](infer
 ```shell
 # 🔹 Demo inference
 python inference_script.py \
-    --input_dir datasets/test/UDM10/LQ-Video \
+    --input_dir datasets/demo \
     --model_path pretrained_models/DOVE \
-    --output_path results/DOVE/UDM10 \
+    --output_path results/DOVE/demo \
     --is_vae_st
 
 # 🔹 Reproduce paper results (save as PNGs)
