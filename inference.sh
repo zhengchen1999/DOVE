@@ -6,7 +6,6 @@ python inference_script.py \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/UDM10 \
     --is_vae_st \
-    --png_save
 
 python eval_metrics.py \
     --gt datasets/test/UDM10/GT \
@@ -19,7 +18,6 @@ python inference_script.py \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/SPMCS \
     --is_vae_st \
-    --png_save
 
 python eval_metrics.py \
     --gt datasets/test/UDM10/GT \
@@ -32,7 +30,6 @@ python inference_script.py \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/YouHQ40 \
     --is_vae_st \
-    --png_save
 
 python eval_metrics.py \
     --gt datasets/test/UDM10/GT \
@@ -46,7 +43,6 @@ python inference_script.py \
     --output_path results/DOVE/RealVSR \
     --is_vae_st \
     --upscale 1 \
-    --png_save
 
 python eval_metrics.py \
     --gt datasets/test/UDM10/GT \
@@ -60,7 +56,6 @@ python inference_script.py \
     --output_path results/DOVE/MVSR4x \
     --is_vae_st \
     --upscale 1 \
-    --png_save
 
 python eval_metrics.py \
     --gt datasets/test/UDM10/GT \
@@ -73,7 +68,6 @@ python inference_script.py \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/VideoLQ \
     --is_vae_st \
-    --png_save
 
 python eval_metrics.py \
     --gt datasets/test/UDM10/GT \

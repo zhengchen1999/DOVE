@@ -128,7 +128,7 @@ We provide pretrained weights for DOVE and DOVE-2B.
 
 | Model Name |               Description               | HuggingFace |                         Google Drive                         | Visual Results                                               |
 | :--------- | :-------------------------------------: | :---------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
-| DOVE       | Base version, built on CogVideoX1.5-5B; |    TODO     | [Download](https://drive.google.com/drive/folders/1wj9jY0fn6prSWJ7BjJOXfxC0bs8skKbQ?usp=sharing) | [Download](https://drive.google.com/drive/folders/1J92X1amVijH9dNWGQcz-6Cx44B7EipWr?usp=drive_link) |
+| DOVE       | Base version, built on CogVideoX1.5-5B; |    TODO     | [Download](https://drive.google.com/file/d/1Nl3XoJndMtpu6KPFcskUTkI0qWBiSXF2/view?usp=drive_link) | [Download](https://drive.google.com/drive/folders/1J92X1amVijH9dNWGQcz-6Cx44B7EipWr?usp=drive_link) |
 | DOVE-2B    | Smaller version, based on CogVideoX-2B  |    TODO     |                             TODO                             | TODO                                                         |
 
 > Place downloaded model files into the `pretrained_models/` folder, e.g., `pretrained_models/DOVE`.
@@ -147,15 +147,15 @@ python inference_script.py \
     --input_dir datasets/demo \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/demo \
-    --is_vae_st
+    --is_vae_st \
+    --save_format yuv420p
 
-# 🔹 Reproduce paper results (save as PNGs)
+# 🔹 Reproduce paper results
 python inference_script.py \
     --input_dir datasets/test/UDM10/LQ-Video \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/UDM10 \
     --is_vae_st \
-    --png_save
 
 # 🔹 Evaluate quantitative metrics
 python eval_metrics.py \
@@ -165,6 +165,8 @@ python eval_metrics.py \
 ```
 
 > 💡 If you encounter out-of-memory (OOM) issues, you can enable chunk-based testing by setting the following parameters: tile_size_hw, overlap_hw, chunk_len, and overlap_t.
+>
+> 💡 Default save format is `yuv444p`. If playback fails, try `save_format=yuv420p` (may slightly affect metrics).
 >
 > **TODO:** Add metric computation scripts for FasterVQA, DOVER, and $E^*_{warp}$.
 

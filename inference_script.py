@@ -13,6 +13,8 @@ from diffusers import (
 )
 
 from transformers import set_seed
+from typing import Dict, Tuple
+from diffusers.models.embeddings import get_3d_rotary_pos_embed
 
 import json
 import os
@@ -150,7 +152,7 @@ def save_video_with_imageio_lossless(video, output_path, fps=8):
     )
 
 
-def save_video_with_imageio(video, output_path, fps=8):
+def save_video_with_imageio(video, output_path, fps=8, format='yuv444p'):
     """
     Save a video tensor to .mp4 using imageio.v3.imwrite with ffmpeg backend.
 
@@ -164,15 +166,26 @@ def save_video_with_imageio(video, output_path, fps=8):
 
     frames = (video * 255).clamp(0, 255).to(torch.uint8).cpu().numpy()
 
-    iio.imwrite(
-        output_path,
-        frames,
-        fps=fps,
-        codec='libx264',
-        pixelformat='yuv420p',
-        macro_block_size=None,
-        ffmpeg_params=['-crf', '10'],
-    )
+    if format == 'yuv444p':
+        iio.imwrite(
+            output_path,
+            frames,
+            fps=fps,
+            codec='libx264',
+            pixelformat='yuv444p',
+            macro_block_size=None,
+            ffmpeg_params=['-crf', '0'],
+        )
+    else:
+        iio.imwrite(
+            output_path,
+            frames,
+            fps=fps,
+            codec='libx264',
+            pixelformat='yuv420p',
+            macro_block_size=None,
+            ffmpeg_params=['-crf', '10'],
+        )
 
 
 def preprocess_video_match(
@@ -517,6 +530,8 @@ if __name__ == "__main__":
 
     parser.add_argument("--png_save", action="store_true", help="Save output as PNG sequence")
 
+    parser.add_argument("--save_format", type=str, default="yuv444p", help="Save output as PNG sequence")
+
     # Crop and Tiling Parameters
     parser.add_argument("--tile_size_hw", type=int, nargs=2, default=(0, 0), help="Tile size for spatial tiling (height, width)")
 
@@ -647,7 +662,7 @@ if __name__ == "__main__":
             output_video = torch.zeros_like(video)
             write_count = torch.zeros_like(video, dtype=torch.int)
 
-            # print(f"Process video: {video_name} | Prompt: {prompt} | Frame: {_F} (ori: {original_shape[0]}; pad: {pad_f}) | Target Resolution: {_H}, {_W} (ori: {original_shape[1]*4}, {original_shape[2]*4}; pad: {pad_h}, {pad_w}) | Chunk Num: {len(time_chunks)*len(spatial_tiles)}")
+            print(f"Process video: {video_name} | Prompt: {prompt} | Frame: {_F} (ori: {original_shape[0]}; pad: {pad_f}) | Target Resolution: {_H}, {_W} (ori: {original_shape[1]*4}, {original_shape[2]*4}; pad: {pad_h}, {pad_w}) | Chunk Num: {len(time_chunks)*len(spatial_tiles)}")
 
             for t_start, t_end in time_chunks:
                 for h_start, h_end, w_start, w_end in spatial_tiles:
@@ -709,7 +724,7 @@ if __name__ == "__main__":
                 save_frames_as_png(video_generate, output_dir, fps=args.fps)
             else:
                 output_path = output_path.replace('.mkv', '.mp4')
-                save_video_with_imageio(video_generate, output_path, fps=args.fps)
+                save_video_with_imageio(video_generate, output_path, fps=args.fps, format=args.save_format)
         else:
             print(f"Warning: {video_name} not found in {args.input_dir}")
 
