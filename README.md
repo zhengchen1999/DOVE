@@ -9,7 +9,7 @@
 </div>
 
 
-[[arXiv](https://arxiv.org/abs/2505.16239)] [[supplementary material](https://github.com/zhengchen1999/DOVE/releases/download/v1/Supplementary_Material.pdf)] [dataset] [pretrained models]
+[[arXiv](https://arxiv.org/abs/2505.16239)] [[supplementary material](https://github.com/zhengchen1999/DOVE/releases/download/v1/Supplementary_Material.pdf)] [[dataset](https://drive.google.com/drive/folders/1e7CyNzfJBa2saWvPr2HI2q_FJhLIc-Ww?usp=drive_link)] [[pretrained models](https://drive.google.com/drive/folders/1wj9jY0fn6prSWJ7BjJOXfxC0bs8skKbQ?usp=sharing)]
 
 
 
