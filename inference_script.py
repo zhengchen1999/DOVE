@@ -662,7 +662,7 @@ if __name__ == "__main__":
             output_video = torch.zeros_like(video)
             write_count = torch.zeros_like(video, dtype=torch.int)
 
-            print(f"Process video: {video_name} | Prompt: {prompt} | Frame: {_F} (ori: {original_shape[0]}; pad: {pad_f}) | Target Resolution: {_H}, {_W} (ori: {original_shape[1]*4}, {original_shape[2]*4}; pad: {pad_h}, {pad_w}) | Chunk Num: {len(time_chunks)*len(spatial_tiles)}")
+            print(f"Process video: {video_name} | Prompt: {prompt} | Frame: {_F} (ori: {original_shape[0]}; pad: {pad_f}) | Target Resolution: {_H}, {_W} (ori: {original_shape[1]*args.upscale}, {original_shape[2]*args.upscale}; pad: {pad_h}, {pad_w}) | Chunk Num: {len(time_chunks)*len(spatial_tiles)}")
 
             for t_start, t_end in time_chunks:
                 for h_start, h_end, w_start, w_end in spatial_tiles:
