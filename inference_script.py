@@ -224,8 +224,8 @@ def preprocess_video_match(
             repeated_frames = last_frame.repeat(pad_f, 1, 1, 1)
             frames = torch.cat([frames, repeated_frames], dim=0)
 
-        pad_h = (4 - H % 4) % 4
-        pad_w = (4 - W % 4) % 4
+        pad_h = (16 - H % 16) % 16
+        pad_w = (16 - W % 16) % 16
         if pad_h > 0 or pad_w > 0:
             # pad = (w_left, w_right, h_top, h_bottom)
             frames = torch.nn.functional.pad(frames, pad=(0, 0, 0, pad_w, 0, pad_h))  # pad right and bottom
