@@ -126,10 +126,10 @@ datasets/
 
 We provide pretrained weights for DOVE and DOVE-2B.
 
-| Model Name |               Description               | HuggingFace |                         Google Drive                         | Visual Results                                               |
-| :--------- | :-------------------------------------: | :---------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
-| DOVE       | Base version, built on CogVideoX1.5-5B; |    TODO     | [Download](https://drive.google.com/file/d/1Nl3XoJndMtpu6KPFcskUTkI0qWBiSXF2/view?usp=drive_link) | [Download](https://drive.google.com/drive/folders/1J92X1amVijH9dNWGQcz-6Cx44B7EipWr?usp=drive_link) |
-| DOVE-2B    | Smaller version, based on CogVideoX-2B  |    TODO     |                             TODO                             | TODO                                                         |
+| Model Name |               Description               | HuggingFace |                         Google Drive                         |                          Baidu Disk                          | Visual Results                                               |
+| :--------- | :-------------------------------------: | :---------: | :----------------------------------------------------------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
+| DOVE       | Base version, built on CogVideoX1.5-5B; |    TODO     | [Download](https://drive.google.com/file/d/1Nl3XoJndMtpu6KPFcskUTkI0qWBiSXF2/view?usp=drive_link) | [Download](https://pan.baidu.com/s/12u-w6TtFlxn9s99gWuIAxw?pwd=fs43) | [Download](https://drive.google.com/drive/folders/1J92X1amVijH9dNWGQcz-6Cx44B7EipWr?usp=drive_link) |
+| DOVE-2B    | Smaller version, based on CogVideoX-2B  |    TODO     |                             TODO                             |                             TODO                             | TODO                                                         |
 
 > Place downloaded model files into the `pretrained_models/` folder, e.g., `pretrained_models/DOVE`.
 
