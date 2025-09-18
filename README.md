@@ -247,10 +247,10 @@ We achieve state-of-the-art performance on real-world video super-resolution. Vi
 If you find the code helpful in your research or work, please cite the following paper(s).
 
 ```
-@article{chen2025dove,
+@inproceedings{chen2025dove,
   title={DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution},
   author={Chen, Zheng and Zou, Zichen and Zhang, Kewei and Su, Xiongfei and Yuan, Xin and Guo, Yong and Zhang, Yulun},
-  journal={arXiv preprint arXiv:2505.16239},
+  booktitle={NeurIPS},
   year={2025}
 }
 ```
