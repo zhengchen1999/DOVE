@@ -1,6 +1,6 @@
 # DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution
 
-[Zheng Chen](https://zhengchen1999.github.io/), [Zichen Zou](https://github.com/zzctmd), [Kewei Zhang](), [Xiongfei Su](https://ieeexplore.ieee.org/author/37086348852), [Xin Yuan](https://en.westlake.edu.cn/faculty/xin-yuan.html), [Yong Guo](https://www.guoyongcs.com/), and [Yulun Zhang](http://yulunzhang.com/), "DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution", 2025
+[Zheng Chen](https://zhengchen1999.github.io/), [Zichen Zou](https://github.com/zzctmd), [Kewei Zhang](), [Xiongfei Su](https://ieeexplore.ieee.org/author/37086348852), [Xin Yuan](https://en.westlake.edu.cn/faculty/xin-yuan.html), [Yong Guo](https://www.guoyongcs.com/), and [Yulun Zhang](http://yulunzhang.com/), "DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution", NeurIPS 2025
 
 <div>
 <a href="https://github.com/zhengchen1999/DOVE/releases" target='_blank' style="text-decoration: none;"><img src="https://img.shields.io/github/downloads/zhengchen1999/DOVE/total?color=green&style=flat"></a>
@@ -15,6 +15,7 @@
 
 #### 🔥🔥🔥 News
 
+- **2025-9-18:** DOVE is accepted at NeurIPS 2025. 🎉🎉🎉
 - **2025-6-09:** Test datasets, inference scripts, and pretrained models are available. ⭐️⭐️⭐️
 - **2025-5-22:** This repo is released.
 
