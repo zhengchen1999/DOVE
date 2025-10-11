@@ -1,3 +1,8 @@
+<div align="center">
+<p align="center"> <img src="assets/DOVE_logo.png" width="480px"> </p>
+</div>
+
+
 # DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution
 
 [Zheng Chen](https://zhengchen1999.github.io/), [Zichen Zou](https://github.com/zzctmd), [Kewei Zhang](), [Xiongfei Su](https://ieeexplore.ieee.org/author/37086348852), [Xin Yuan](https://en.westlake.edu.cn/faculty/xin-yuan.html), [Yong Guo](https://www.guoyongcs.com/), and [Yulun Zhang](http://yulunzhang.com/), "DOVE: Efficient One-Step Diffusion Model for Real-World Video Super-Resolution", NeurIPS 2025
@@ -9,12 +14,13 @@
 </div>
 
 
-[[arXiv](https://arxiv.org/abs/2505.16239)] [[supplementary material](https://github.com/zhengchen1999/DOVE/releases/download/v1/Supplementary_Material.pdf)] [[dataset](https://drive.google.com/drive/folders/1e7CyNzfJBa2saWvPr2HI2q_FJhLIc-Ww?usp=drive_link)] [[pretrained models](https://drive.google.com/drive/folders/1wj9jY0fn6prSWJ7BjJOXfxC0bs8skKbQ?usp=sharing)]
+[[project](https://zheng-chen.cn/DOVE)] [[arXiv](https://arxiv.org/abs/2505.16239)] [[supplementary material](https://github.com/zhengchen1999/DOVE/releases/download/v1/Supplementary_Material.pdf)] [[dataset](https://drive.google.com/drive/folders/1e7CyNzfJBa2saWvPr2HI2q_FJhLIc-Ww?usp=drive_link)] [[pretrained models](https://drive.google.com/drive/folders/1wj9jY0fn6prSWJ7BjJOXfxC0bs8skKbQ?usp=sharing)]
 
 
 
 #### 🔥🔥🔥 News
 
+- **2025-10-12:** The [project](https://zheng-chen.cn/DOVE) page is online, containing more visual results. 🌈🌈🌈
 - **2025-9-18:** DOVE is accepted at NeurIPS 2025. 🎉🎉🎉
 - **2025-6-09:** Test datasets, inference scripts, and pretrained models are available. ⭐️⭐️⭐️
 - **2025-5-22:** This repo is released.
@@ -182,6 +188,11 @@ We achieve state-of-the-art performance on real-world video super-resolution. Vi
 
 <p align="center">
   <img width="900" src="assets/Quantitative.png">
+</p>
+- Complexity Comparison in Tab. 2 of the supplementary material
+
+<p align="center">
+  <img width="900" src="assets/Quantitative-2.png">
 </p>
 
 </details>
