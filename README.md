@@ -72,6 +72,7 @@
 - [ ] Release training code.
 - [ ] Release video processing pipeline.
 - [ ] Release HQ-VSR dataset.
+- [x] Release project page.
 - [ ] Provide WebUI.
 - [ ] Provide HuggingFace demo.
 
