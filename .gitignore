@@ -1,1 +1,6 @@
 .DS_Store
+datasets/*
+finetune/checkpoint/*
+__pycache__/
+*.py[cod]
+*$py.class
