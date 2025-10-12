@@ -219,11 +219,12 @@ We provide pretrained weights for DOVE and DOVE-2B.
 
 ## <a name="testing"></a>🔨 Testing
 
-We provide inference commands below. Before running, make sure to download the corresponding pretrained models and test datasets.
+- We provide inference commands below. Before running, make sure to download the corresponding pretrained models and test datasets.
 
-For more options and usage, please refer to [inference_script.py](inference_script.py).
+- For more options and usage, please refer to [inference_script.py](inference_script.py).
 
-The full testing commands are provided in the shell script: [inference.sh](inference.sh).
+- The full testing commands are provided in the shell script: [inference.sh](inference.sh).
+
 
 ```shell
 # 🔹 Demo inference
