@@ -20,7 +20,8 @@
 
 #### 🔥🔥🔥 News
 
-- **2025-10-12:** The [project](https://zheng-chen.cn/DOVE) page is online, containing more visual results. 🌈🌈🌈
+- **2025-10-12:**  Training code and the [HQ-VSR](https://drive.google.com/file/d/1a4-n8WpV8rJar5qOFJ0GyivhZCv5bCQD/view?usp=sharing) dataset have been released. 🚀🚀🚀
+- **2025-10-11:** The [project](https://zheng-chen.cn/DOVE) page is online, containing more visual results. 🌈🌈🌈
 - **2025-9-18:** DOVE is accepted at NeurIPS 2025. 🎉🎉🎉
 - **2025-6-09:** Test datasets, inference scripts, and pretrained models are available. ⭐️⭐️⭐️
 - **2025-5-22:** This repo is released.
@@ -69,9 +70,9 @@
 
 - [x] Release testing code.
 - [x] Release pre-trained models.
-- [ ] Release training code.
-- [ ] Release video processing pipeline.
-- [ ] Release HQ-VSR dataset.
+- [x] Release training code.
+- [ ] Release the video processing pipeline.
+- [x] Release HQ-VSR dataset.
 - [x] Release project page.
 - [ ] Provide WebUI.
 - [ ] Provide HuggingFace demo.
@@ -103,6 +104,30 @@ pip install pyiqa
 
 ## <a name="datasets"></a>📁 Datasets
 
+### 🗳️ Train Datasets
+
+We use two datasets for model training: **HQ-VSR** and **DIV2K-HR**. All datasets should be placed in the directory `datasets/train/`.
+
+| Dataset      | Type  | # Videos / Images | Download                                                     |
+| ------------ | ----- | ----------------- | ------------------------------------------------------------ |
+| **HQ-VSR**   | Video | 2,055             | [Google Drive](https://drive.google.com/file/d/1a4-n8WpV8rJar5qOFJ0GyivhZCv5bCQD/view?usp=sharing) |
+| **DIV2K-HR** | Image | 800               | [Official Link](http://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip) |
+
+All datasets should follow this structure:
+
+```shell
+datasets/
+└── train/
+    ├── HQ-VSR/
+    └── DIV2K_train_HR/
+```
+
+> 💡 **HQ-VSR description:**
+>
+> - Construct using our four-stage video processing pipeline.
+> - Extract 2,055 videos from [OpenVid-1M](https://github.com/NJU-PCALab/OpenVid-1M), suitable for video super-resolution (VSR) training.
+> - Detailed configuration and statistics are provided in the paper.
+
 ### 🗳️ Test Datasets
 
 We provide several real-world and synthetic test datasets for evaluation. All datasets follow a consistent directory structure:
@@ -116,7 +141,7 @@ We provide several real-world and synthetic test datasets for evaluation. All da
 | MVSR4x  | Real-world |  15   | [Google Drive](https://drive.google.com/file/d/16sesBD_9Xx_5Grtx18nosBw1w94KlpQt/view?usp=drive_link) |
 | VideoLQ | Real-world |  50   | [Google Drive](https://drive.google.com/file/d/1lh0vkU_llxE0un1OigJ0DWPQwt1i68Vn/view?usp=drive_link) |
 
-All datasets are hosted on [here](https://drive.google.com/drive/folders/1yNKG6rtTNtZQY8qL74GoQwA0jgjBUEby?usp=sharing). Make sure the path is correct (`datasets/test/`) before running inference.
+All datasets are hosted [here](https://drive.google.com/drive/folders/1yNKG6rtTNtZQY8qL74GoQwA0jgjBUEby?usp=sharing). Make sure the path (`datasets/test/`) is correct before running inference.
 
 The directory structure is as follows:
 
@@ -140,6 +165,57 @@ We provide pretrained weights for DOVE and DOVE-2B.
 | DOVE-2B    | Smaller version, based on CogVideoX-2B  |    TODO     |                             TODO                             |                             TODO                             | TODO                                                         |
 
 > Place downloaded model files into the `pretrained_models/` folder, e.g., `pretrained_models/DOVE`.
+
+## <a name="training"></a>🔧 Training
+
+> **Note:** Training requires 4×A100 GPUs (80 GB each). You can optionally reduce the number of GPUs and use LoRA fine-tuning to reduce GPU memory requirements.
+
+- Prepare Datasets and Pretrained Models. Download the following resources and place them in the specified directories:
+
+  | Type             | Dataset / Model                                              | Path                 |
+  | ---------------- | ------------------------------------------------------------ | -------------------- |
+  | Training         | [HQ-VSR](https://drive.google.com/file/d/1a4-n8WpV8rJar5qOFJ0GyivhZCv5bCQD/view?usp=sharing), [DIV2K-HR](http://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip) | `datasets/train/`    |
+  | Testing          | [UDM10](https://drive.google.com/file/d/1AmGVSCwMm_OFPd3DKgNyTwj0GG2H-tG4/view?usp=drive_link) | `datasets/test/`     |
+  | Pretrained model | [CogVideoX1.5-5B](https://huggingface.co/zai-org/CogVideoX1.5-5B) | `pretrained_models/` |
+
+- Build Dataset Statistics. Run the following commands to generate training and testing data statistics:
+
+  ```bash
+  # 🔹 Train dataset
+  python finetune/scripts/prepare_dataset.py --dir /data2/chenzheng/DOVE/datasets/train/HQ-VSR
+  python finetune/scripts/prepare_dataset.py --dir /data2/chenzheng/DOVE/datasets/train/DIV2K_train_HR
+  # 🔹 Testing dataset
+  python finetune/scripts/prepare_dataset.py --dir /data2/chenzheng/DOVE/datasets/test/UDM10/GT-Video
+  python finetune/scripts/prepare_dataset.py --dir /data2/chenzheng/DOVE/datasets/test/UDM10/LQ-Video
+  ```
+
+- 🔹 Stage-1 (Latent-Space): Adaptation. Enter the `finetune/` directory and perform the first-stage training (latent-space) using:
+
+  ```bash
+  bash train_ddp_one_s1.sh
+  ```
+
+  This step fine-tunes the pretrained **CogVideoX1.5-5B** model to adapt to the VSR task.
+
+- 🔹 Stage-2 (Pixel-Space): Refinement. After Stage-1 training, convert the checkpoint into a loadable SFT weight:
+
+  ```bash
+  python finetune/scripts/prepare_sft_ckpt.py --checkpoint_dir checkpoint/DOVE-s1/checkpoint-10000
+  ```
+
+  Then, run the second-stage fine-tuning:
+
+  ```bash
+  bash train_ddp_one_s2.sh
+  ```
+
+  This stage further adjusts the model in pixel space to enhance the video restoration.
+
+- After Stage-2, convert the final checkpoint to a loadable format:
+
+  ```bash
+  python finetune/scripts/prepare_sft_ckpt.py --checkpoint_dir checkpoint/DOVE-/checkpoint-500
+  ```
 
 ## <a name="testing"></a>🔨 Testing
 
