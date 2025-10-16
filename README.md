@@ -225,6 +225,7 @@ We provide pretrained weights for DOVE and DOVE-2B.
 
 - The full testing commands are provided in the shell script: [inference.sh](inference.sh).
 
+- **💡 Prompt Optimization:** DOVE uses an empty prompt (`""`). To accelerate inference, we pre-load the empty prompt embedding from `pretrained_models/prompt_embeddings`. When the prompt is empty, the pre-loaded embedding is used directly, bypassing text encoding and reducing overhead.
 
 ```shell
 # 🔹 Demo inference

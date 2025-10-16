@@ -15,6 +15,7 @@ from diffusers import (
 from transformers import set_seed
 from typing import Dict, Tuple
 from diffusers.models.embeddings import get_3d_rotary_pos_embed
+from safetensors.torch import load_file
 
 import json
 import os
@@ -397,6 +398,7 @@ def process_video(
     prompt: str = '',
     noise_step: int = 0,
     sr_noise_step: int = 399,
+    empty_prompt_embedding: torch.Tensor = None,
 ):
     # SR the video frames based on the prompt.
     # `num_frames` is the Number of frames to generate.
@@ -418,20 +420,28 @@ def process_video(
     batch_size, num_channels, num_frames, height, width = latent.shape
 
     # Get prompt embeddings
-    prompt_token_ids = pipe.tokenizer(
-        prompt,
-        padding="max_length",
-        max_length=pipe.transformer.config.max_text_seq_length,
-        truncation=True,
-        add_special_tokens=True,
-        return_tensors="pt",
-    )
-    prompt_token_ids = prompt_token_ids.input_ids
-    prompt_embedding = pipe.text_encoder(
-        prompt_token_ids.to(latent.device)
-    )[0]
-    _, seq_len, _ = prompt_embedding.shape
-    prompt_embedding = prompt_embedding.view(batch_size, seq_len, -1).to(dtype=latent.dtype)
+    if prompt == "" and empty_prompt_embedding is not None:
+        # Use pre-loaded empty prompt embedding
+        prompt_embedding = empty_prompt_embedding.to(latent.device, dtype=latent.dtype)
+        # Expand to match batch size if needed
+        if prompt_embedding.shape[0] != batch_size:
+            prompt_embedding = prompt_embedding.repeat(batch_size, 1, 1)
+    else:
+        # Encode the prompt
+        prompt_token_ids = pipe.tokenizer(
+            prompt,
+            padding="max_length",
+            max_length=pipe.transformer.config.max_text_seq_length,
+            truncation=True,
+            add_special_tokens=True,
+            return_tensors="pt",
+        )
+        prompt_token_ids = prompt_token_ids.input_ids
+        prompt_embedding = pipe.text_encoder(
+            prompt_token_ids.to(latent.device)
+        )[0]
+        _, seq_len, _ = prompt_embedding.shape
+        prompt_embedding = prompt_embedding.view(batch_size, seq_len, -1).to(dtype=latent.dtype)
 
     latent = latent.permute(0, 2, 1, 3, 4)
 
@@ -566,6 +576,19 @@ if __name__ == "__main__":
     # Set seed
     set_seed(args.seed)
 
+    # Load empty prompt embedding if exists
+    empty_prompt_embedding = None
+    empty_prompt_path = Path("pretrained_models/prompt_embeddings/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.safetensors")
+    if empty_prompt_path.exists():
+        try:
+            empty_prompt_embedding = load_file(str(empty_prompt_path))["prompt_embedding"]
+            print(f"Loaded empty prompt embedding from {empty_prompt_path}")
+        except Exception as e:
+            print(f"Warning: Failed to load empty prompt embedding: {e}")
+            empty_prompt_embedding = None
+    else:
+        print(f"Empty prompt embedding not found at {empty_prompt_path}")
+
     if args.input_json is not None:
         with open(args.input_json, 'r') as f:
             video_prompt_dict = json.load(f)
@@ -676,6 +699,7 @@ if __name__ == "__main__":
                         prompt=prompt,
                         noise_step=args.noise_step,
                         sr_noise_step=args.sr_noise_step,
+                        empty_prompt_embedding=empty_prompt_embedding,
                     )
 
                     region = get_valid_tile_region(
