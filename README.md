@@ -97,7 +97,7 @@ pip install pyiqa
 
 1. [Datasets](#datasets)
 1. [Models](#models)
-1. Training
+1. [Training](#training)
 1. [Testing](#testing)
 1. [Results](#results)
 1. [Acknowledgements](#acknowledgements)
