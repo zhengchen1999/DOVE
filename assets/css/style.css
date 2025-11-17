@@ -10,9 +10,9 @@
     box-shadow: 0 0 15px #f00;
 }
 
-.container.is-max-desktop.head {
+/* .container.is-max-desktop.head {
     max-width: 100%;
-}
+} */
 
 .button.is-rounded:hover {
     transform: scale(1.02);
