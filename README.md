@@ -20,6 +20,7 @@
 
 #### 🔥🔥🔥 News
 
+- **2025-12-11:**  Released the [DOVE Stage-1 weight](https://drive.google.com/file/d/1JgoF8XMJ50ora32GTjAhsFQZx48vwUDR/view?usp=drive_link) to facilitate training. 📦📦📦
 - **2025-10-12:**  Training code and the [HQ-VSR](https://drive.google.com/file/d/1a4-n8WpV8rJar5qOFJ0GyivhZCv5bCQD/view?usp=sharing) dataset have been released. 🚀🚀🚀
 - **2025-10-11:** The [project](https://zheng-chen.cn/DOVE) page is online, containing more visual results. 🌈🌈🌈
 - **2025-9-18:** DOVE is accepted at NeurIPS 2025. 🎉🎉🎉
@@ -159,10 +160,11 @@ datasets/
 
 We provide pretrained weights for DOVE and DOVE-2B.
 
-| Model Name |               Description               | HuggingFace |                         Google Drive                         |                          Baidu Disk                          | Visual Results                                               |
-| :--------- | :-------------------------------------: | :---------: | :----------------------------------------------------------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
-| DOVE       | Base version, built on CogVideoX1.5-5B; |    TODO     | [Download](https://drive.google.com/file/d/1Nl3XoJndMtpu6KPFcskUTkI0qWBiSXF2/view?usp=drive_link) | [Download](https://pan.baidu.com/s/12u-w6TtFlxn9s99gWuIAxw?pwd=fs43) | [Download](https://drive.google.com/drive/folders/1J92X1amVijH9dNWGQcz-6Cx44B7EipWr?usp=drive_link) |
-| DOVE-2B    | Smaller version, based on CogVideoX-2B  |    TODO     |                             TODO                             |                             TODO                             | TODO                                                         |
+| Model Name            |                   Description                    | HuggingFace |                         Google Drive                         |                          Baidu Disk                          | Visual Results                                               |
+| :-------------------- | :----------------------------------------------: | :---------: | :----------------------------------------------------------: | :----------------------------------------------------------: | ------------------------------------------------------------ |
+| DOVE (Stage-1)        | Base version, built on CogVideoX1.5-5B, Stage-1; |    TODO     | [Download](https://drive.google.com/file/d/1JgoF8XMJ50ora32GTjAhsFQZx48vwUDR/view?usp=drive_link) |                             TODO                             | TODO                                                         |
+| DOVE (Stage-2, Final) | Base version, built on CogVideoX1.5-5B, Stage-2; |    TODO     | [Download](https://drive.google.com/file/d/1Nl3XoJndMtpu6KPFcskUTkI0qWBiSXF2/view?usp=drive_link) | [Download](https://pan.baidu.com/s/12u-w6TtFlxn9s99gWuIAxw?pwd=fs43) | [Download](https://drive.google.com/drive/folders/1J92X1amVijH9dNWGQcz-6Cx44B7EipWr?usp=drive_link) |
+| DOVE-2B               |      Smaller version, based on CogVideoX-2B      |    TODO     |                             TODO                             |                             TODO                             | TODO                                                         |
 
 > Place downloaded model files into the `pretrained_models/` folder, e.g., `pretrained_models/DOVE`.
 
@@ -172,11 +174,12 @@ We provide pretrained weights for DOVE and DOVE-2B.
 
 - Prepare Datasets and Pretrained Models. Download the following resources and place them in the specified directories:
 
-  | Type             | Dataset / Model                                              | Path                 |
-  | ---------------- | ------------------------------------------------------------ | -------------------- |
-  | Training         | [HQ-VSR](https://drive.google.com/file/d/1a4-n8WpV8rJar5qOFJ0GyivhZCv5bCQD/view?usp=sharing), [DIV2K-HR](http://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip) | `datasets/train/`    |
-  | Testing          | [UDM10](https://drive.google.com/file/d/1AmGVSCwMm_OFPd3DKgNyTwj0GG2H-tG4/view?usp=drive_link) | `datasets/test/`     |
-  | Pretrained model | [CogVideoX1.5-5B](https://huggingface.co/zai-org/CogVideoX1.5-5B) | `pretrained_models/` |
+  | Type                    | Dataset / Model                                              | Path                 |
+  | ----------------------- | ------------------------------------------------------------ | -------------------- |
+  | Training                | [HQ-VSR](https://drive.google.com/file/d/1a4-n8WpV8rJar5qOFJ0GyivhZCv5bCQD/view?usp=sharing), [DIV2K-HR](http://data.vision.ee.ethz.ch/cvl/DIV2K/DIV2K_train_HR.zip) | `datasets/train/`    |
+  | Testing                 | [UDM10](https://drive.google.com/file/d/1AmGVSCwMm_OFPd3DKgNyTwj0GG2H-tG4/view?usp=drive_link) | `datasets/test/`     |
+  | Pretrained model        | [CogVideoX1.5-5B](https://huggingface.co/zai-org/CogVideoX1.5-5B) | `pretrained_models/` |
+  | Stage-1 weight (select) | [DOVE-Stage1](https://drive.google.com/file/d/1JgoF8XMJ50ora32GTjAhsFQZx48vwUDR/view?usp=drive_link) | `pretrained_models/` |
 
 - Build Dataset Statistics. Run the following commands to generate training and testing data statistics:
 
@@ -202,6 +205,10 @@ We provide pretrained weights for DOVE and DOVE-2B.
   ```bash
   python finetune/scripts/prepare_sft_ckpt.py --checkpoint_dir checkpoint/DOVE-s1/checkpoint-10000
   ```
+
+  > [!NOTE]
+  >
+  > You can skip Stage-1 training by directly using our released [DOVE Stage-1 weight]((https://drive.google.com/file/d/1JgoF8XMJ50ora32GTjAhsFQZx48vwUDR/view?usp=drive_link)), which can be loaded as the input checkpoint for Stage-2.
 
   Then, run the second-stage fine-tuning:
 
