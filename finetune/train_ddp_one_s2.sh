@@ -65,10 +65,10 @@ CHECKPOINT_ARGS=(
 # Validation Configuration
 VALIDATION_ARGS=(
     --do_validation true  # ["true", "false"]
-    --validation_dir "data/VideoSR/test/UDM10"
-    --validation_steps 100  # should be multiple of checkpointing_steps
-    --validation_videos "video_real_v0.txt"
-    --validation_ref_videos "video.txt"
+    --validation_dir "../datasets/test/UDM10"
+    --validation_steps 500  # should be multiple of checkpointing_steps
+    --validation_videos "LQ-Video.txt"
+    --validation_ref_videos "GT-Video.txt"
     # --validation_prompts "prompts.txt"
     --gen_fps 8
     --raw_test true
