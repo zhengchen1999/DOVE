@@ -1,0 +1,31 @@
+{
+  "archives_sha256": {
+    "ewarp_v3_code(2).zip": "be4527fa589b261699d1cbe7ac5664414efe9d75582eb990ee2cd4c6d011c7c6",
+    "eval_metric.zip": "f7d98756bcd8195a6c7765707c03df346033543480773c0cd6dd80682fe96a33"
+  },
+  "eval_metric_url": "https://drive.google.com/file/d/1mzinw3d-QAp0wn5djk1KaGTR3U-aTF9e/view",
+  "ewarp_v3_original_files_sha256": {
+    "LICENSE": "f36d48bb9ec61ea02600bc1fe2e771faa67a9b6ef9bf5696e3ba1f43ab41de43",
+    "ewarp_v3.py": "f2a8be97b1258a40228232e415763d356ea04f06f86caa9415b7f61161c700f1",
+    "warp_utils.py": "e45f430512dd5f1232b7e20f1e4d23e5c66a00bb9047c628e312f14c8de2afc3",
+    "core/update.py": "71334a2065dacad7d960993d47f67484a7fee4c2e91bc748511aaf789e04cd75",
+    "core/corr.py": "436053b52a3ffd3693e538f89f21f4e232fabb60bc2a7bbf5a803e5e1c1b0cdd",
+    "core/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "core/extractor.py": "53968e9f386f14c81edcf052180e54bf79f17fbc4c4e99b115f9bebadafe49d4",
+    "core/raft.py": "752016882e67b810ce0af1ccd6983d097f7268d8eeb17c5a93fb80ea836181fb",
+    "core/utils/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "core/utils/utils.py": "bb265cf8c6d0e5e96306552ba2425d31fc380ebe0b3124ee5bfe8b08cbf2841c",
+    "networks/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "networks/resample2d_package/resample2d.py": "5efb6dc7e6344b1068f5460f1c952b430ed5de2898e6f2db2e2a6158bdd07b34",
+    "networks/resample2d_package/resample2d_kernel.cuh": "d3f202bf261a88607f181e0e7165752e5218b21c40982379c665a7d307894725",
+    "networks/resample2d_package/pyproject.toml": "5bd516f131b370e9a357492927c4565ce843143dec267635864f10785c3322f1",
+    "networks/resample2d_package/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "networks/resample2d_package/resample2d_cuda.cc": "02a3c972192ec80fee748e9d0f5206bc510ebed6fc7190303a7c244b61663d25",
+    "networks/resample2d_package/setup.py": "828f62a3b87d5876e785f632be98a0626951dac0bd9b0d1fbe115a475b0977f8",
+    "networks/resample2d_package/resample2d_kernel.cu": "73dd25243bada4c4a76efbe125f98cc622f7e3a63de275bf2b44c66342b9398f",
+    "alt_cuda_corr/correlation_kernel.cu": "df0d9180ae574fa503eb8985fb56e4d038c450a0084e0744ee6d998bd755ab61",
+    "alt_cuda_corr/correlation.cpp": "21ef359fe59e3819a4486ee76500602fdea6cad0e1cf1d88d17683ea3d021639",
+    "alt_cuda_corr/setup.py": "090df8bba92cf6a852261ec92250a4e56003cab9d64726d972e1bc14e9f30b15"
+  },
+  "raft_checkpoint_sha256": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
+}

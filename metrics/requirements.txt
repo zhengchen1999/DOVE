@@ -1,0 +1,11 @@
+# Install a compatible PyTorch/torchvision pair separately (Python >= 3.10).
+numpy
+opencv-python
+Pillow
+tqdm
+scipy
+natsort
+imageio
+imageio-ffmpeg
+pyiqa
+# DOVER and VBench have optional dependencies; see README.md.

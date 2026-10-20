@@ -1,0 +1,9 @@
+# Minimal eWarp environment, after installing PyTorch.
+numpy<2
+opencv-python
+Pillow
+tqdm
+scipy
+natsort
+setuptools
+wheel

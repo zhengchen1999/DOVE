@@ -4,3 +4,8 @@ finetune/checkpoint/*
 __pycache__/
 *.py[cod]
 *$py.class
+third_party/eval_metric-master/
+pretrained_models/metrics/
+metrics/raft/networks/resample2d_package/build/
+metrics/raft/networks/resample2d_package/*.egg-info/
+metrics/raft/networks/resample2d_package/*.so

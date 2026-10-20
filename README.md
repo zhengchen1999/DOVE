@@ -266,7 +266,24 @@ python eval_metrics.py \
 >
 > 💡 Default save format is `yuv444p`. If playback fails, try `save_format=yuv420p` (may slightly affect metrics).
 >
-> **TODO:** Add metric computation scripts for FasterVQA, DOVER, and $E^*_{warp}$.
+### Metric evaluation
+
+The unified evaluator supports PSNR, SSIM, LPIPS, DISTS, CLIP-IQA, MUSIQ, NIQE,
+BRISQUE, DOVER, corrected eWarp v3, and the supplied six-dimension VBench score.
+See [metrics/README.md](metrics/README.md) for dependencies, weights, definitions,
+and commands. It evaluates existing videos or frame folders without running DOVE.
+
+```bash
+python eval_metrics.py \
+    --pred results/DOVE/UDM10 \
+    --metrics ewarp \
+    --raft-model pretrained_models/metrics/raft-things.pth \
+    --out results/metrics/UDM10
+```
+
+**eWarp correction:** RAFT receives RGB inputs in [0, 255]. The new output is
+labelled `raft_rgb255_only_v3` and retains the supplied ×1000 scale. Previous
+eWarp scores must not be mixed with this version. FasterVQA remains unsupported.
 
 ## <a name="results"></a>🔎 Results
 
