@@ -43,10 +43,8 @@ def build_parser(default_metrics="psnr,ssim,clipiqa"):
 
 
 def requested_metrics(text):
-    aliases = {"ewarp": "ewarp_v3"}
-    names = list(dict.fromkeys(aliases.get(m.strip().lower(), m.strip().lower())
-                              for m in text.split(",") if m.strip()))
-    unknown = set(names) - (SUPPORTED | {"ewarp_v3", "dover", "vbench"})
+    names = list(dict.fromkeys(m.strip().lower() for m in text.split(",") if m.strip()))
+    unknown = set(names) - (SUPPORTED | {"ewarp", "dover", "vbench"})
     if not names or unknown:
         raise ValueError(f"Unsupported or empty metric selection: {sorted(unknown)}")
     return names
@@ -148,14 +146,14 @@ def main(argv=None, default_metrics="psnr,ssim,clipiqa"):
         from .iqa import evaluate
         scores, metadata["iqa"] = evaluate(sequences, references, image_metrics, args, device)
         merge(scores)
-    video_metrics = set(names) & {"ewarp_v3", "dover", "vbench"}
+    video_metrics = set(names) & {"ewarp", "dover", "vbench"}
     if video_metrics:
         from .io import prepared_videos
         from .video import evaluate_dover, evaluate_vbench
         with prepared_videos(sequences, args.fps) as videos:
-            if "ewarp_v3" in video_metrics:
+            if "ewarp" in video_metrics:
                 from .ewarp import evaluate
-                scores, metadata["ewarp_v3"] = evaluate(videos, args, device)
+                scores, metadata["ewarp"] = evaluate(videos, args, device)
                 merge(scores)
             if "dover" in video_metrics:
                 scores, metadata["dover"] = evaluate_dover(videos, args, device)

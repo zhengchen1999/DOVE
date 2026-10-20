@@ -11,12 +11,12 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--metrics-zip", type=Path, help="The supplied eval_metric.zip")
-    parser.add_argument("--ewarp-zip", type=Path, help="The supplied ewarp_v3_code(2).zip")
+    parser.add_argument("--ewarp-zip", type=Path, help="The supplied eWarp source archive")
     args = parser.parse_args()
     if not args.metrics_zip and not args.ewarp_zip:
         parser.error("Specify at least one archive")
     manifest = json.loads((ROOT / "metrics/sources.json").read_text())
-    for path, key in [(args.metrics_zip, "eval_metric.zip"), (args.ewarp_zip, "ewarp_v3_code(2).zip")]:
+    for path, key in [(args.metrics_zip, "metrics"), (args.ewarp_zip, "ewarp")]:
         if path and hashlib.sha256(path.read_bytes()).hexdigest() != manifest["archives_sha256"][key]:
             raise ValueError(f"Archive differs from the supplied reference: {path}")
     if args.metrics_zip:
@@ -39,10 +39,12 @@ def main():
                 target.write_bytes(data)
         print(f"Optional metric source: {destination / 'eval_metric-master'}")
     if args.ewarp_zip or args.metrics_zip:
-        member = ("ewarp_v3/eval_metric/RAFT/models/raft-things.pth" if args.ewarp_zip
-                  else "eval_metric-master/RAFT/models/raft-things.pth")
         with zipfile.ZipFile(args.ewarp_zip or args.metrics_zip) as archive:
-            data = archive.read(member)
+            members = [name for name in archive.namelist()
+                       if name.endswith("/RAFT/models/raft-things.pth")]
+            if len(members) != 1:
+                raise ValueError("Expected exactly one RAFT checkpoint in the archive")
+            data = archive.read(members[0])
         if hashlib.sha256(data).hexdigest() != manifest["raft_checkpoint_sha256"]:
             raise ValueError("Unexpected RAFT checkpoint")
         target = ROOT / "pretrained_models/metrics/raft-things.pth"

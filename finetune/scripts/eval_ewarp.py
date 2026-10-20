@@ -1,4 +1,4 @@
-"""Compatibility entry point for the unified evaluator; eWarp uses v3."""
+"""Compatibility entry point for the unified metric evaluator."""
 from pathlib import Path
 import sys
 
@@ -7,4 +7,4 @@ from metrics.cli import main
 
 
 if __name__ == "__main__":
-    main(default_metrics="ewarp_v3")
+    main(default_metrics="ewarp")

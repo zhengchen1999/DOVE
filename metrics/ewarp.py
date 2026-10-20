@@ -1,4 +1,4 @@
-"""Adapter to the supplied normalization-only eWarp v3 implementation."""
+"""Adapter to the supplied RAFT-based eWarp implementation."""
 from argparse import Namespace
 from pathlib import Path
 import math
@@ -9,15 +9,15 @@ from .io import read_frames, sha256
 def evaluate(sequences, args, device):
     import torch
     if device.type != "cuda":
-        raise ValueError("eWarp v3 requires CUDA and the supplied resample2d extension")
+        raise ValueError("eWarp requires CUDA and the supplied resample2d extension")
     checkpoint = Path(args.raft_model).expanduser().resolve()
     if not checkpoint.is_file():
         raise FileNotFoundError(
             f"RAFT checkpoint missing: {checkpoint}. Extract raft-things.pth "
-            "from ewarp_v3_code(2).zip and pass --raft-model."
+            "from the metric archive and pass --raft-model."
         )
     try:
-        from .raft.ewarp_v3 import compute_video_warping_error, metric_metadata, RAFT
+        from .raft.ewarp import compute_video_warping_error, metric_metadata, RAFT
     except ImportError as error:
         raise RuntimeError(
             "Install the eWarp dependencies and build "
@@ -41,9 +41,9 @@ def evaluate(sequences, args, device):
             frames.close()
         score = compute_video_warping_error(str(path), model, device).item() * 1000
         if not math.isfinite(score):
-            raise ValueError(f"Non-finite eWarp v3 score: {path}")
-        results[name] = {"ewarp_v3": score}
-        print(f"{name}: ewarp_v3={score:.8f}", flush=True)
+            raise ValueError(f"Non-finite eWarp score: {path}")
+        results[name] = {"ewarp": score}
+        print(f"{name}: ewarp={score:.8f}", flush=True)
     metadata = metric_metadata(raft_args)
     metadata["flow_model_sha256"] = sha256(checkpoint)
     return results, metadata

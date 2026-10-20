@@ -1,12 +1,12 @@
 {
   "archives_sha256": {
-    "ewarp_v3_code(2).zip": "be4527fa589b261699d1cbe7ac5664414efe9d75582eb990ee2cd4c6d011c7c6",
-    "eval_metric.zip": "f7d98756bcd8195a6c7765707c03df346033543480773c0cd6dd80682fe96a33"
+    "ewarp": "be4527fa589b261699d1cbe7ac5664414efe9d75582eb990ee2cd4c6d011c7c6",
+    "metrics": "f7d98756bcd8195a6c7765707c03df346033543480773c0cd6dd80682fe96a33"
   },
   "eval_metric_url": "https://drive.google.com/file/d/1mzinw3d-QAp0wn5djk1KaGTR3U-aTF9e/view",
-  "ewarp_v3_original_files_sha256": {
+  "ewarp_original_files_sha256": {
     "LICENSE": "f36d48bb9ec61ea02600bc1fe2e771faa67a9b6ef9bf5696e3ba1f43ab41de43",
-    "ewarp_v3.py": "f2a8be97b1258a40228232e415763d356ea04f06f86caa9415b7f61161c700f1",
+    "metric_implementation": "f2a8be97b1258a40228232e415763d356ea04f06f86caa9415b7f61161c700f1",
     "warp_utils.py": "e45f430512dd5f1232b7e20f1e4d23e5c66a00bb9047c628e312f14c8de2afc3",
     "core/update.py": "71334a2065dacad7d960993d47f67484a7fee4c2e91bc748511aaf789e04cd75",
     "core/corr.py": "436053b52a3ffd3693e538f89f21f4e232fabb60bc2a7bbf5a803e5e1c1b0cdd",

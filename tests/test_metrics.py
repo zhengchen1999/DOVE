@@ -36,16 +36,16 @@ class InputTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Missing GT"):
                 select_inputs(args, ["psnr"])
 
-    def test_ewarp_alias_cannot_select_legacy(self):
-        self.assertEqual(requested_metrics("ewarp,ewarp_v3,ssim"), ["ewarp_v3", "ssim"])
+    def test_metric_selection_normalizes_and_deduplicates_names(self):
+        self.assertEqual(requested_metrics(" ewarp ,EWarp,ssim"), ["ewarp", "ssim"])
         with self.assertRaises(ValueError):
-            requested_metrics("ewarp_v2")
+            requested_metrics("legacy_ewarp")
 
     def test_missing_or_invalid_scores_fail(self):
         with self.assertRaisesRegex(ValueError, "Incomplete"):
             validate_results({"clip": {"psnr": 30}}, ["psnr", "ssim"])
         with self.assertRaisesRegex(ValueError, "Invalid"):
-            validate_results({"clip": {"ewarp_v3": math.nan}}, ["ewarp_v3"])
+            validate_results({"clip": {"ewarp": math.nan}}, ["ewarp"])
         validate_results({"clip": {"psnr": math.inf}}, ["psnr"])
 
 

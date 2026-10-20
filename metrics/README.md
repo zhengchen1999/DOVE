@@ -9,7 +9,7 @@ Python 3.10 or later is required.
 This integration uses the supplied
 [eval_metric.zip](https://drive.google.com/file/d/1mzinw3d-QAp0wn5djk1KaGTR3U-aTF9e/view)
 for IQA, DOVER and the six-dimension VBench protocol, and
-`ewarp_v3_code(2).zip` for eWarp. Archive and original source hashes are recorded
+the supplied eWarp reference implementation. Archive and original source hashes are recorded
 in [sources.json](sources.json).
 
 | CLI name | Definition / output |
@@ -17,7 +17,7 @@ in [sources.json](sources.json).
 | `psnr`, `ssim`, `lpips`, `dists` | PyIQA full-reference frame metrics |
 | `clipiqa`, `musiq`, `niqe`, `brisque` | PyIQA no-reference frame metrics |
 | `dover` | Supplied `dover.yml`, `val-l1080p` sampling, fused score in [0, 1] |
-| `ewarp` or `ewarp_v3` | `raft_rgb255_only_v3`, lower is better, ×1000 |
+| `ewarp` | RAFT-based warping error, lower is better, ×1000 |
 | `vbench` | Supplied six-dimension weighted sum, with the raw dimensions retained |
 
 eWarp uses prediction-to-prediction forward/backward RAFT flow, half-resolution
@@ -27,15 +27,11 @@ The score is the RGB-summed squared error divided by visible pixels, averaged
 over all adjacent pairs and then equally across videos, and multiplied by 1000.
 The supplied padding, boundary-clamped sampling, forward/backward and motion
 boundary occlusion masks, and zero-error fully occluded pairs are preserved.
-Do not mix these scores with legacy eWarp or v2 results.
+The computation in [raft/ewarp.py](raft/ewarp.py) follows the supplied reference.
+RAFT and its CUDA resampling kernel are included; their BSD license is in
+[raft/LICENSE](raft/LICENSE). eWarp requires CUDA.
 
-The computation body in `raft/ewarp_v3.py` is unchanged from the supplied v3.
-Vendored RAFT changes are package-relative imports, removal of an unused `ipdb`
-import, and a build script that targets the installed CUDA architecture instead
-of a fixed list of old GPUs. Whitespace is normalized without changing the
-computation. The original BSD license is in `raft/LICENSE`.
-The CUDA resampling kernel is retained. There is no substitute optical-flow
-model or CPU fallback for eWarp.
+> eWarp uses corrected RAFT input normalization, so its scores may differ from previously reported values.
 
 ## Install
 
@@ -55,9 +51,10 @@ python metrics/prepare_sources.py --metrics-zip /path/to/eval_metric.zip
 
 The helper verifies the supplied archive hash and installs the RAFT checkpoint
 under `pretrained_models/metrics/`. Both supplied archives contain the identical
-RAFT checkpoint, so the linked `eval_metric.zip` is sufficient for setup; the
-corrected v3 computation is already in this repository. To use only the smaller
-v3 archive, run `python metrics/prepare_sources.py --ewarp-zip '/path/to/ewarp_v3_code(2).zip'`.
+RAFT checkpoint, so the linked `eval_metric.zip` is sufficient for setup.
+The eWarp computation is already included in this repository. If you have the
+separate eWarp archive, pass its path with `--ewarp-zip /path/to/ewarp.zip`;
+the archive filename does not affect verification.
 Alternatively, extract the archive yourself and pass its `raft-things.pth` with
 `--raft-model`. Weights are not stored in Git.
 `TORCH_CUDA_ARCH_LIST` can be set when building the extension for another GPU.
@@ -70,8 +67,8 @@ python metrics/prepare_sources.py --metrics-zip /path/to/eval_metric.zip
 
 This places the optional source in the ignored `third_party/eval_metric-master/`
 directory and the verified RAFT weight under `pretrained_models/metrics/`.
-It does not install the old eWarp implementation. Existing extracted
-source can instead be selected with `--metric-code-root /path/to/eval_metric-master`.
+Existing extracted source can instead be selected with
+`--metric-code-root /path/to/eval_metric-master`.
 Install optional dependencies in the environment used for that metric:
 
 ```bash
@@ -99,7 +96,7 @@ python eval_metrics.py \
   --metrics psnr,ssim,lpips,dists,clipiqa,musiq,niqe,brisque \
   --batch-size 1 --out results/metrics/UDM10
 
-# Corrected eWarp only:
+# eWarp:
 python eval_metrics.py \
   --pred results/DOVE/UDM10 --metrics ewarp \
   --raft-model pretrained_models/metrics/raft-things.pth \
@@ -142,17 +139,15 @@ and the PyIQA version are recorded in the report. `--test-y-channel` uses the so
 LPIPS/DISTS retain RGB. No-reference metrics do not receive this border crop or
 Y conversion. Per-frame and dataset averages retain full precision.
 
-DOVER results are associated with video names, not the original wrapper's
-shifted list indices. Sampling uses `--seed 0` for each video. VBench preserves
+DOVER sampling uses `--seed 0` for each video. VBench preserves
 the supplied sum of normalized dimensions (weights 1, 1, 1, 0.5, 1, 1), without
 dividing by the sum of weights or converting it to a percentage. VBench runs at
-the original input resolution; the old `--bilinear` shortcut is not enabled.
-FasterVQA is not implemented by the supplied bundle.
+the original input resolution.
 
 ## Output and validation
 
-Reports are named `metrics_<selected_metrics>.json`; the `ewarp` alias always
-produces the versioned name `ewarp_v3`. Each report contains `per_sample`,
+Reports are named `metrics_<selected_metrics>.json`, such as `metrics_ewarp.json`
+and `metrics_dover.json`. Each report contains `per_sample`,
 `average`, `count`, and `metadata` with paths, metric options, library versions,
 and relevant weight hashes. Infinite PSNR is represented by the JSON string
 `"Infinity"`. Missing GT, empty input, duplicate names, missing dependencies,
@@ -161,7 +156,7 @@ A report is published only after all selected videos and metrics succeed.
 
 The `finetune/scripts/eval_*.py` commands delegate to this same implementation.
 Old CLI spellings `--out_path`, `--batch_mode`, `--test_y_channel`, `--is_center`,
-and eWarp's `--model` are accepted. The versioned, unified JSON structure replaces
+and eWarp's `--model` are accepted. The unified JSON structure replaces
 the older single-video-metric scalar structure.
 
 ```bash

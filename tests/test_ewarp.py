@@ -5,12 +5,12 @@ from unittest.mock import patch
 try:
     import numpy as np
     import torch
-    from metrics.raft import ewarp_v3
+    from metrics.raft import ewarp
 except ImportError:
-    ewarp_v3 = None
+    ewarp = None
 
 
-@unittest.skipIf(ewarp_v3 is None, "eWarp dependencies/extension not installed")
+@unittest.skipIf(ewarp is None, "eWarp dependencies/extension not installed")
 class EwarpProtocolTests(unittest.TestCase):
     def run_pair(self, occluded):
         class Capture:
@@ -36,9 +36,9 @@ class EwarpProtocolTests(unittest.TestCase):
         def occlusion(backward, forward, image):
             return np.full(image.shape[-2:], occluded, dtype=float), image
 
-        with patch.object(ewarp_v3.cv2, "VideoCapture", Capture), \
-             patch.object(ewarp_v3.warp_utils, "detect_occlusion", occlusion):
-            result = ewarp_v3.compute_video_warping_error("unused.mp4", model, "cpu")
+        with patch.object(ewarp.cv2, "VideoCapture", Capture), \
+             patch.object(ewarp.warp_utils, "detect_occlusion", occlusion):
+            result = ewarp.compute_video_warping_error("unused.mp4", model, "cpu")
         return result.item() * 1000, calls
 
     def test_rgb255_raft_and_rgb_squared_error_scale(self):

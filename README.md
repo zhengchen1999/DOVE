@@ -25,6 +25,7 @@
 
 #### 🔥🔥🔥 News
 
+- **2026-10-20:** Released a unified [metric evaluation script](#metric-evaluation) with setup instructions and testing commands, including DOVER and eWarp.
 - **2025-12-11:**  Released the [DOVE Stage-1 weight](https://drive.google.com/file/d/1JgoF8XMJ50ora32GTjAhsFQZx48vwUDR/view?usp=drive_link) to facilitate training. 📦📦📦
 - **2025-10-12:**  Training code and the [HQ-VSR](https://drive.google.com/file/d/1a4-n8WpV8rJar5qOFJ0GyivhZCv5bCQD/view?usp=sharing) dataset have been released. 🚀🚀🚀
 - **2025-10-11:** The [project](https://zheng-chen.cn/DOVE) page is online, containing more visual results. 🌈🌈🌈
@@ -105,6 +106,7 @@ pip install pyiqa
 1. [Models](#models)
 1. [Training](#training)
 1. [Testing](#testing)
+1. [Metric evaluation](#metric-evaluation)
 1. [Results](#results)
 1. [Acknowledgements](#acknowledgements)
 
@@ -231,6 +233,8 @@ We provide pretrained weights for DOVE and DOVE-2B.
 
 ## <a name="testing"></a>🔨 Testing
 
+### Inference
+
 - We provide inference commands below. Before running, make sure to download the corresponding pretrained models and test datasets.
 
 - For more options and usage, please refer to [inference_script.py](inference_script.py).
@@ -253,27 +257,48 @@ python inference_script.py \
     --input_dir datasets/test/UDM10/LQ-Video \
     --model_path pretrained_models/DOVE \
     --output_path results/DOVE/UDM10 \
-    --is_vae_st \
-
-# 🔹 Evaluate quantitative metrics
-python eval_metrics.py \
-    --gt datasets/test/UDM10/GT \
-    --pred results/DOVE/UDM10 \
-    --metrics psnr,ssim,lpips,dists,clipiqa
+    --is_vae_st
 ```
 
 > 💡 If you encounter out-of-memory (OOM) issues, you can enable chunk-based testing by setting the following parameters: tile_size_hw, overlap_hw, chunk_len, and overlap_t.
 >
 > 💡 Default save format is `yuv444p`. If playback fails, try `save_format=yuv420p` (may slightly affect metrics).
->
+
 ### Metric evaluation
 
-The unified evaluator supports PSNR, SSIM, LPIPS, DISTS, CLIP-IQA, MUSIQ, NIQE,
-BRISQUE, DOVER, corrected eWarp v3, and the supplied six-dimension VBench score.
-See [metrics/README.md](metrics/README.md) for dependencies, weights, definitions,
-and commands. It evaluates existing videos or frame folders without running DOVE.
+Use [eval_metrics.py](eval_metrics.py) to evaluate saved videos or frame folders.
+If you already have model outputs, start here; inference is not required.
+Supported metrics are PSNR, SSIM, LPIPS, DISTS, CLIP-IQA, MUSIQ, NIQE, BRISQUE,
+DOVER, eWarp, and VBench.
+
+**Image quality.** Install the metric dependencies and provide matching output
+and ground-truth sequences:
 
 ```bash
+python -m pip install -r metrics/requirements.txt
+
+python eval_metrics.py \
+    --pred results/DOVE/UDM10 \
+    --gt datasets/test/UDM10/GT \
+    --metrics psnr,ssim,lpips,dists,clipiqa,musiq,niqe,brisque \
+    --out results/metrics/UDM10
+```
+
+**Video quality and temporal consistency.** Complete the
+[DOVER and eWarp setup](metrics/README.md#install), then run each command in
+the environment configured for that metric. These metrics do not require GT:
+
+```bash
+# DOVER
+python eval_metrics.py \
+    --pred results/DOVE/UDM10 \
+    --metrics dover \
+    --metric-code-root third_party/eval_metric-master \
+    --dover-model /path/to/DOVER.pth \
+    --seed 0 \
+    --out results/metrics/UDM10
+
+# eWarp
 python eval_metrics.py \
     --pred results/DOVE/UDM10 \
     --metrics ewarp \
@@ -281,9 +306,13 @@ python eval_metrics.py \
     --out results/metrics/UDM10
 ```
 
-**eWarp correction:** RAFT receives RGB inputs in [0, 255]. The new output is
-labelled `raft_rgb255_only_v3` and retains the supplied ×1000 scale. Previous
-eWarp scores must not be mixed with this version. FasterVQA remains unsupported.
+Each command evaluates all sequences in `--pred` and saves per-video scores,
+the dataset mean, and evaluation settings in `--out`, for example
+`metrics_dover.json` or `metrics_ewarp.json`. Use `--sequences 000,001` for a
+small check or `--device cuda:1` to select a GPU.
+See the [metric guide](metrics/README.md) for setup, options, and VBench usage.
+
+> **Note:** eWarp uses corrected RAFT input normalization, so its scores may differ from previously reported values.
 
 ## <a name="results"></a>🔎 Results
 

@@ -1,4 +1,4 @@
-"""Compatibility entry point for the unified evaluator; eWarp uses v3."""
+"""Compatibility entry point for the unified metric evaluator."""
 from pathlib import Path
 import sys
 

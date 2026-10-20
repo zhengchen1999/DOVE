@@ -1,10 +1,4 @@
-"""EvalCrafter eWarp with ONLY the RAFT input normalization corrected.
-
-The historical computation intentionally retains padding, boundary-clamped
-sampling, zero-error fully occluded pairs, and RGB-summed squared error.
-The function body below matches the pre-repair implementation except for the
-two RAFT calls multiplying their inputs by 255. Do not mix scores with v2.
-"""
+"""RAFT-based eWarp with RGB inputs in [0, 255] for flow estimation."""
 import sys
 from pathlib import Path
 
@@ -18,7 +12,7 @@ from .core.raft import RAFT
 from .core.utils.utils import InputPadder
 from . import warp_utils
 
-METRIC_VERSION = 'raft_rgb255_only_v3'
+METRIC_PROTOCOL = 'raft_rgb255'
 VIDEO_EXTENSIONS = {'.mp4', '.avi', '.mov', '.mkv'}
 
 # Adapted from EvalCrafter/metrics/RAFT/optical_flow_scores.py, itself adapted
@@ -104,7 +98,7 @@ def compute_video_warping_error(video_path, model, device):
 
 def metric_metadata(args):
     return {
-        'version': METRIC_VERSION,
+        'protocol': METRIC_PROTOCOL,
         'implementation_base': 'EvalCrafter/metrics/RAFT/optical_flow_scores.py',
         'change_from_legacy': 'multiply both inputs by 255 at the two RAFT calls only',
         'flow_source': 'prediction',
@@ -155,7 +149,7 @@ def Ewarp(args):
         if video_path.stem in results:
             raise ValueError(f'Duplicate video stem: {video_path.stem}')
         results[video_path.stem] = score
-        print(f'Vid: {video_path.name}, {METRIC_VERSION}: {score}', flush=True)
+        print(f'Vid: {video_path.name}, {METRIC_PROTOCOL}: {score}', flush=True)
     average_score = sum(results.values()) / len(results)
-    print(f'Final average {METRIC_VERSION}: {average_score}, Total videos: {len(results)}')
+    print(f'Final average {METRIC_PROTOCOL}: {average_score}, Total videos: {len(results)}')
     return results, average_score

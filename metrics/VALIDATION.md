@@ -12,12 +12,12 @@ Both input SHA-256 values match the server's pre-existing video validation recor
 | 000 | `0230940b0f6fc36091325721adbe63c6042f9a69e20b2a848a42a7ac56ba2e08` |
 | 001 | `1d68b22a778cf6cbab0121ad26a8aa42a40e928bb9afe944f147f2e6d9a4d7d2` |
 
-## eWarp v3
+## eWarp
 
-The new CLI and the unmodified `eval_ewarp_v3.py` from the supplied archive ran on
+The new CLI and the unmodified reference evaluator from the supplied archive ran on
 the same two complete videos with the same checkpoint and environment.
 
-| Clip | New CLI | Supplied v3 | Absolute difference |
+| Clip | New CLI | Supplied reference | Absolute difference |
 | --- | ---: | ---: | ---: |
 | 000 | 1.105746952816844 | 1.105746952816844 | 0 |
 | 001 | 0.256330706179142 | 0.256330706179142 | 0 |
@@ -32,8 +32,8 @@ SM 8.6, in an isolated build directory. The build emitted a CUDA minor-version
 warning and upstream deprecation warnings but succeeded. Running clip 000 with
 that newly built extension again produced **1.105746952816844**.
 
-All vendored Python computation ASTs match the supplied v3 after excluding
-package imports/path setup. The calculation and CUDA kernel were not replaced.
+The eWarp score-computation function matches the supplied reference. Its AST
+and the CUDA kernel are unchanged by the filename and interface cleanup.
 
 ## Image metrics and DOVER
 
@@ -69,7 +69,12 @@ DOVER checkpoint SHA-256:
 
 ## Additional checks and scope
 
-- All **11 regression tests passed on leo**, including two eWarp protocol tests.
+- The initial run passed **11 regression tests on leo**, including two eWarp
+  protocol tests. After the naming cleanup, **10 targeted CPU checks passed**;
+  VBench was excluded from this follow-up.
+- A mocked-backend CLI check confirmed the `metrics_ewarp.json` filename,
+  `ewarp` result key, and `raft_rgb255` protocol metadata. This check did not
+  evaluate any videos.
 - Empty input, duplicate sequence names, missing GT, incomplete/non-finite
   results, and unintended shape mismatches are rejected.
 - The Y-channel option retains RGB inputs for LPIPS/DISTS.
